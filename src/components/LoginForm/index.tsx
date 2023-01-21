@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FaHatWizard } from 'react-icons/fa'
+import { FaUser } from 'react-icons/fa'
 import { IoEyeOff } from 'react-icons/io5'
 import { MdLock, MdRemoveRedEye } from 'react-icons/md'
 import { StyledLoginForm, StyledLoginSection } from './StyledLoginForm'
@@ -21,20 +21,15 @@ export function LoginForm({ children }: Props) {
         <p>Sign in to your account</p>
         <div className="form-wrapper">
           <div>
-            <FaHatWizard size={24} />
-            <label htmlFor="inputEmail">EMAIL</label>
+            <FaUser size={24} />
+            {/* <label htmlFor="inputEmail">EMAIL</label> */}
           </div>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="account e-mail"
-          />
+          <input type="email" name="email" id="email" placeholder="username" />
         </div>
         <div className="form-wrapper">
           <div>
             <MdLock size={24} />
-            <label htmlFor="inputPassword">PASSWORD</label>
+            {/* <label htmlFor="inputPassword">PASSWORD</label> */}
           </div>
           <input
             type={showPassword ? 'text' : 'password'}
