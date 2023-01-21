@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const StyledLoginTitle = styled.div`
   align-self: center;
   height: 0;
-  width: 100%;
+  width: var(--container-width-lg);
   max-width: 40rem;
   padding-top: 8rem;
   font-family: inherit;
@@ -16,7 +16,7 @@ export const StyledLoginTitle = styled.div`
     padding: 0.5rem 0 0.8rem 0;
 
     background-color: ${({ theme }) => theme.colors.backgroundVar};
-    box-shadow: 0px 0px 3px 1px ${({ theme }) => theme.colors.secondary};
+    /* box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.secondary}; */
   }
 
   h2 {
@@ -27,7 +27,18 @@ export const StyledLoginTitle = styled.div`
 
   h4 {
     font-size: var(--font-size-md);
-    font-weight: 400;
+    font-weight: 300;
+    line-height: 1.4;
+    padding: 0 1rem;
+
     color: ${({ theme }) => theme.colors.secondary};
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: var(--container-width-md);
+  }
+
+  @media screen and (max-width: 768px) {
+    width: var(--container-width-sm);
   }
 `
