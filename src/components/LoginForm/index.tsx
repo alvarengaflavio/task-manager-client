@@ -18,7 +18,15 @@ export function LoginForm({ children }: Props) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('Form submitted')
+
+    const username = e.currentTarget.username.value
+    const password = e.currentTarget.password.value
+
+    if (username === '' || password === '') {
+      return
+    }
+
+    console.log({ username, password })
   }
 
   return (
@@ -30,7 +38,13 @@ export function LoginForm({ children }: Props) {
             <FaUser size={24} />
             {/* <label htmlFor="inputEmail">EMAIL</label> */}
           </div>
-          <input type="email" name="email" id="email" placeholder="username" />
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="username"
+            required
+          />
         </div>
         <div className="form-wrapper">
           <div>
