@@ -26,21 +26,23 @@ export const StyledLoginForm = styled.form`
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 2.5rem;
-    }
+      width: 0;
 
-    svg {
-      vertical-align: middle;
+      svg {
+        position: absolute;
+        left: 0.6rem;
+        vertical-align: middle;
+      }
     }
   }
 
   input {
-    width: 15rem;
-    padding: 0.5rem;
+    width: 100%;
     border-radius: 12px;
-    flex-basis: 1rem;
-    font-size: var(--font-size-md);
     border: 2px solid transparent;
+    font-size: var(--font-size-md);
+    padding: 0.5rem;
+    text-indent: 2rem;
 
     outline: 1px solid ${({ theme }) => theme.colors.secondary};
 
@@ -58,13 +60,25 @@ export const StyledLoginForm = styled.form`
   }
 
   input::placeholder {
-    text-align: center;
+    text-indent: calc(50% - 2rem);
   }
 
   .form-input-password {
     position: absolute;
     right: 9px;
     cursor: pointer;
+  }
+
+  .login-btn--wrapper {
+    margin: 1rem 0 0 0;
+
+    button:first-child {
+      margin-right: 0.5rem;
+    }
+
+    button {
+      width: 7rem;
+    }
   }
 `
 export const StyledLoginSection = styled.section`
