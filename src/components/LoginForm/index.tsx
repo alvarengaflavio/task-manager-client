@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { IoEyeOff } from 'react-icons/io5'
 import { MdLock, MdRemoveRedEye } from 'react-icons/md'
+import { Button } from '../shared/Button'
 import { StyledLoginForm, StyledLoginSection } from './StyledLoginForm'
 
 type Props = {
@@ -15,9 +16,14 @@ export function LoginForm({ children }: Props) {
     setShowPassword(!showPassword)
   }
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log('Form submitted')
+  }
+
   return (
     <StyledLoginSection>
-      <StyledLoginForm>
+      <StyledLoginForm onSubmit={handleSubmit}>
         <p>Sign in to your account</p>
         <div className="form-wrapper">
           <div>
@@ -52,6 +58,12 @@ export function LoginForm({ children }: Props) {
             />
           )}
         </div>
+
+        <div className="login-btn--wrapper">
+          <Button type="submit" text="Login" style="secondary" />
+          <Button type="button" text="Register" style="primary" />
+        </div>
+        {/* <Button type="button" text="Forgot Password?" style="primary" /> */}
       </StyledLoginForm>
 
       {children}
