@@ -1,3 +1,4 @@
+import { login } from '@/contexts/talespire/TalespireActions'
 import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { IoEyeOff } from 'react-icons/io5'
@@ -16,7 +17,7 @@ export function LoginForm({ children }: Props) {
     setShowPassword(!showPassword)
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const username = e.currentTarget.username.value
@@ -26,7 +27,7 @@ export function LoginForm({ children }: Props) {
       return
     }
 
-    console.log({ username, password })
+    await login({ username, password })
   }
 
   return (
@@ -56,6 +57,7 @@ export function LoginForm({ children }: Props) {
             name="password"
             id="password"
             placeholder="password"
+            required
           />
 
           {showPassword ? (
