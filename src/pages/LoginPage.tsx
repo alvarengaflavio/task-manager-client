@@ -33,6 +33,6 @@ export function LoginPage({}: Props) {
 }
 
 const ButtonsWrapper = styled.div`
-  margin: 12rem auto 0 auto;
+  margin: 11.5rem auto 0 auto;
   width: max-content;
 `
