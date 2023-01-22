@@ -23,12 +23,7 @@ export function LoginPage({}: Props) {
         <LoginTitle />
         <LoginForm>
           <ButtonsWrapper>
-            <Button style="primary" text="Faço Nada" />
-            <Button
-              style="secondary"
-              text="Faço Tudo"
-              handleClick={NavtoAbout}
-            />
+            <Button style="secondary" text="About" handleClick={NavtoAbout} />
           </ButtonsWrapper>
         </LoginForm>
         <Footer />
@@ -38,9 +33,6 @@ export function LoginPage({}: Props) {
 }
 
 const ButtonsWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  place-items: center;
-  margin: 2rem auto 0 auto;
-  width: 16em;
+  margin: 12rem auto 0 auto;
+  width: max-content;
 `
