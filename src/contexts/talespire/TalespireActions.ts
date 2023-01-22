@@ -1,10 +1,11 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3000/api/v1'
+axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 export const fetchData = async (url: string) => {
   try {
-    const token = localStorage.getItem('jwt')
+    const token = localStorage.getItem('accessToken')
     const headers = { Authorization: `Bearer ${token}` }
     const response = await axios.get(url, { headers })
 
@@ -16,7 +17,7 @@ export const fetchData = async (url: string) => {
 
 axios.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('jwt')
+    const token = localStorage.getItem('accessToken')
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
@@ -25,10 +26,6 @@ axios.interceptors.request.use(
     return config
   },
   (err) => {
-    if (err.response.status === 401 || err.response.status === 403) {
-      // Redirecione o usuário para a página de login ou mostre uma mensagem de erro
-      window.location.href = '/login'
-    }
     return Promise.reject(err)
   }
 )
