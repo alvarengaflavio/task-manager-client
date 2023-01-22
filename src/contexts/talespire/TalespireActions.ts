@@ -1,4 +1,5 @@
 import { HandleError } from '@/utils/error/handle-error-modal'
+import { LoginPayload } from '@/utils/types/payloads'
 import axios from 'axios'
 
 axios.defaults.baseURL = 'http://taskmanager.sa-east-1.elasticbeanstalk.com'
@@ -36,7 +37,7 @@ axios.interceptors.response.use(
   }
 )
 
-export const login = async (username: string, password: string) => {
+export const login = async ({ username, password }: LoginPayload) => {
   try {
     const response = await axios.post('/auth/login', {
       username,
