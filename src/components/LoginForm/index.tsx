@@ -44,6 +44,7 @@ export function LoginForm({ children }: Props) {
             name="username"
             id="username"
             placeholder="username"
+            pattern="[A-Za-z0-9\-]{1,20}"
             required
           />
         </div>
@@ -57,6 +58,7 @@ export function LoginForm({ children }: Props) {
             name="password"
             id="password"
             placeholder="password"
+            pattern="^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$"
             required
           />
 
