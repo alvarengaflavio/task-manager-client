@@ -1,9 +1,10 @@
 import Swal from 'sweetalert2'
 
-export function HandleError(err: any) {
+export function HandleError(err: Error) {
   Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
+    title: 'Error!',
     text: err.message,
+    icon: 'error',
+    confirmButtonText: 'Ok',
   })
 }
