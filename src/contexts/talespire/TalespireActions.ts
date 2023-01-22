@@ -1,6 +1,7 @@
+import { HandleError } from '@/utils/error/handle-error-modal'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://taskmanager.sa-east-1.elasticbeanstalk.com'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 axios.interceptors.request.use(
@@ -34,3 +35,17 @@ axios.interceptors.response.use(
     }
   }
 )
+
+export const login = async (username: string, password: string) => {
+  try {
+    const response = await axios.post('/auth/login', {
+      username,
+      password,
+    })
+    localStorage.setItem('accessToken', response.data.accessToken)
+
+    return response.data
+  } catch (err: any) {
+    HandleError(err)
+  }
+}
