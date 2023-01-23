@@ -30,10 +30,6 @@ export function RegisterForm({ children }: Props) {
     const password = e.currentTarget.password.value
     const confirmPassword = e.currentTarget['confirm-password'].value
 
-    if (username === '' || password === '' || confirmPassword === '') {
-      return
-    }
-
     const errorsList = registerFormValidator(
       username,
       password,
@@ -41,7 +37,7 @@ export function RegisterForm({ children }: Props) {
     )
 
     if (errorsList.length > 0) {
-      console.log('errorsList', errorsList)
+      // console.log('errorsList', errorsList)
       setErrorState(() => errorsList)
       return
     }
@@ -64,7 +60,6 @@ export function RegisterForm({ children }: Props) {
             name="username"
             id="username"
             placeholder="username"
-            required
           />
         </div>
         <div className="form-wrapper">
@@ -77,7 +72,6 @@ export function RegisterForm({ children }: Props) {
             name="password"
             id="password"
             placeholder="password"
-            required
           />
 
           {showPassword ? (
@@ -104,22 +98,7 @@ export function RegisterForm({ children }: Props) {
             name="confirm-password"
             id="confirm-password"
             placeholder="confirm password"
-            required
           />
-
-          {showPassword ? (
-            <IoEyeOff
-              size={22}
-              className={'form-input-password'}
-              onClick={handleShowPassword}
-            />
-          ) : (
-            <MdRemoveRedEye
-              size={22}
-              className={'form-input-password'}
-              onClick={handleShowPassword}
-            />
-          )}
         </div>
 
         <div className="login-btn--wrapper">
