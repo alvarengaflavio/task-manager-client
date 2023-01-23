@@ -49,7 +49,7 @@ export const login = async ({ username, password }: LoginPayload) => {
       return response.data
     }
 
-    throw new Error('Username or password is incorrect')
+    throw new Error('Incorrect username or password')
   } catch (err: any) {
     HandleError(err, 'Login Error')
   }
