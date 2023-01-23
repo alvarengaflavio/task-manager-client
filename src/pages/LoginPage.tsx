@@ -7,8 +7,6 @@ import { ScreenWrapper } from '@/components/styles/StyledScreenWrapper'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-type Props = {}
-
 export function LoginPage({}: Props) {
   const navigate = useNavigate()
 
@@ -31,6 +29,8 @@ export function LoginPage({}: Props) {
     </>
   )
 }
+
+type Props = {}
 
 const ButtonsWrapper = styled.div`
   margin: 11.5rem auto 0 auto;
