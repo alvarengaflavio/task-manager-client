@@ -7,10 +7,6 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from '../shared/Button'
 import { StyledLoginForm, StyledLoginSection } from './StyledLoginForm'
 
-type Props = {
-  children?: React.ReactNode
-}
-
 export function LoginForm({ children }: Props) {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
@@ -98,4 +94,8 @@ export function LoginForm({ children }: Props) {
       {children}
     </StyledLoginSection>
   )
+}
+
+type Props = {
+  children?: React.ReactNode
 }
