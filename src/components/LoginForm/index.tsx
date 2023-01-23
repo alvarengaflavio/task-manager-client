@@ -1,15 +1,18 @@
 import { login } from '@/contexts/talespire/TalespireActions'
+import { loginFormValidator } from '@/utils/validators.util'
 import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { IoEyeOff } from 'react-icons/io5'
 import { MdLock, MdRemoveRedEye } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../shared/Button'
+import { ErrorList } from '../shared/ErrorList'
 import { StyledLoginForm, StyledLoginSection } from './StyledLoginForm'
 
 export function LoginForm({ children }: Props) {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
+  const [errorState, setErrorState] = useState<string[]>([])
 
   const handleRegister = () => {
     navigate('/register')
@@ -25,7 +28,10 @@ export function LoginForm({ children }: Props) {
     const username = e.currentTarget.username.value
     const password = e.currentTarget.password.value
 
-    if (username === '' || password === '') {
+    const errorsList = loginFormValidator(username, password)
+
+    if (errorsList.length > 0) {
+      setErrorState(() => errorsList)
       return
     }
 
@@ -46,8 +52,6 @@ export function LoginForm({ children }: Props) {
             name="username"
             id="username"
             placeholder="username"
-            pattern="[A-Za-z0-9\-]{1,20}"
-            required
           />
         </div>
         <div className="form-wrapper">
@@ -60,8 +64,6 @@ export function LoginForm({ children }: Props) {
             name="password"
             id="password"
             placeholder="password"
-            pattern="^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$"
-            required
           />
 
           {showPassword ? (
@@ -88,7 +90,8 @@ export function LoginForm({ children }: Props) {
             handleClick={handleRegister}
           />
         </div>
-        {/* <Button type="button" text="Forgot Password?" style="primary" /> */}
+
+        {errorState.length > 0 && <ErrorList errors={errorState} />}
       </StyledLoginForm>
 
       {children}
