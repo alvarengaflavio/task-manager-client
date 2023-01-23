@@ -6,16 +6,14 @@ import { IoEyeOff } from 'react-icons/io5'
 import { MdLock, MdRemoveRedEye } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../shared/Button'
+import { ErrorList } from '../shared/ErrorList'
 import { StyledRegisterForm, StyledRegisterSection } from './StyledRegisterForm'
-
-type Props = {
-  children?: React.ReactNode
-}
 
 export function RegisterForm({ children }: Props) {
   const navigate = useNavigate()
 
   const [showPassword, setShowPassword] = useState(false)
+  const [errorState, setErrorState] = useState<string[]>([])
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword)
@@ -43,11 +41,14 @@ export function RegisterForm({ children }: Props) {
     )
 
     if (errorsList.length > 0) {
-      console.log(errorsList)
+      console.log('errorsList', errorsList)
+      setErrorState(() => errorsList)
       return
     }
 
-    await register({ username, password })
+    const response = await register({ username, password })
+
+    setErrorState(() => response)
   }
 
   return (
@@ -130,10 +131,15 @@ export function RegisterForm({ children }: Props) {
             handleClick={handleBack}
           />
         </div>
-        {/* <Button type="button" text="Forgot Password?" style="primary" /> */}
+
+        {errorState.length > 0 && <ErrorList errors={errorState} />}
       </StyledRegisterForm>
 
       {children}
     </StyledRegisterSection>
   )
+}
+
+type Props = {
+  children?: React.ReactNode
 }
