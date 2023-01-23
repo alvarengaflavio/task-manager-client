@@ -35,6 +35,8 @@ axios.interceptors.response.use(
       window.location.href = '/login'
       throw new Error(err.response.data.message)
     }
+
+    return err
   }
 )
 
@@ -57,9 +59,21 @@ export const login = async ({ username, password }: LoginPayload) => {
 
 export const register = async ({ username, password }: LoginPayload) => {
   try {
-    const response = await axios.post('/auth/signup', { username, password })
+    const response = await axios
+      .post('/auth/signup', { username, password })
+      .catch((err) => err.response)
 
-    console.log(response.data)
+    if (response?.status === 201) {
+      return ['User successfully created']
+    }
+
+    if (response?.status === 400) {
+      return [response?.data?.message]
+    }
+
+    if (response?.status === 409) {
+      return [response?.data?.message]
+    }
   } catch (err: any) {
     HandleError(err)
   }
