@@ -13,6 +13,7 @@ type Props = {
 
 export function RegisterForm({ children }: Props) {
   const navigate = useNavigate()
+
   const [showPassword, setShowPassword] = useState(false)
 
   const handleShowPassword = () => {
@@ -90,7 +91,6 @@ export function RegisterForm({ children }: Props) {
         <div className="form-wrapper">
           <div>
             <MdLock size={24} />
-            {/* <label htmlFor="inputPassword">PASSWORD</label> */}
           </div>
           <input
             type={showPassword ? 'text' : 'password'}
