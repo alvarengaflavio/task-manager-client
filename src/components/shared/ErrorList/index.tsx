@@ -1,16 +1,21 @@
-import { StyledErrorList } from './StyledErrorList'
+import {
+  StyledErrorDiv,
+  StyledList,
+  StyledListItem,
+  StyledSpan,
+} from './StyledErrorList'
 
 export const ErrorList = ({ errors }: Props) => {
   return (
-    <StyledErrorList className="error-wrapper">
-      <ul>
+    <StyledErrorDiv>
+      <StyledList>
         {errors.map((error, index) => (
-          <li key={index}>
-            <p key={index}>{error}</p>
-          </li>
+          <StyledListItem key={index}>
+            <StyledSpan key={index}>{error}</StyledSpan>
+          </StyledListItem>
         ))}
-      </ul>
-    </StyledErrorList>
+      </StyledList>
+    </StyledErrorDiv>
   )
 }
 
