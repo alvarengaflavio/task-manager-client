@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { IoEyeOff } from 'react-icons/io5'
 import { MdLock, MdRemoveRedEye } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '../shared/Button'
 import { StyledLoginForm, StyledLoginSection } from './StyledLoginForm'
 
@@ -11,7 +12,12 @@ type Props = {
 }
 
 export function LoginForm({ children }: Props) {
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
+
+  const handleRegister = () => {
+    navigate('/register')
+  }
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword)
@@ -79,7 +85,12 @@ export function LoginForm({ children }: Props) {
 
         <div className="login-btn--wrapper">
           <Button type="submit" text="Login" style="secondary" />
-          <Button type="button" text="Register" style="primary" />
+          <Button
+            type="button"
+            text="Register"
+            style="primary"
+            handleClick={handleRegister}
+          />
         </div>
         {/* <Button type="button" text="Forgot Password?" style="primary" /> */}
       </StyledLoginForm>
