@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const StyledErrorList = styled.div`
+export const StyledErrorDiv = styled.div`
   border-radius: 9px;
   margin: 2rem auto 0 auto;
   width: 75%;
@@ -9,17 +9,21 @@ export const StyledErrorList = styled.div`
   color: var(--color-white);
   background-color: ${({ theme }) => theme.colors.inlineError};
   transition: var(--transition);
+`
+export const StyledList = styled.ul`
+  font-size: inherit;
+  padding: 1.2rem 1.2rem 1.2rem 2.4rem;
+  line-height: 1.5;
 
-  ul {
-    color: var(--color-white);
-    font-size: var(--font-size-sm);
-    padding: 1rem 1rem 1rem 2rem;
-    line-height: 1.2;
-  }
+  color: var(--color-white);
+`
 
-  p {
-    font-weight: 400;
-    font-size: var(--font-size-sm);
-    color: var(--color-white);
-  }
+export const StyledListItem = styled.li`
+  font-size: inherit;
+`
+
+export const StyledSpan = styled.span`
+  font-size: inherit;
+  font-weight: 400;
+  color: var(--color-white);
 `
