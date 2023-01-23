@@ -10,21 +10,16 @@ export const StyledErrorList = styled.div`
   background-color: ${({ theme }) => theme.colors.inlineError};
   transition: var(--transition);
 
-  ul,
-  li,
-  p {
-    font-size: var(--font-size-sm);
-  }
-
   ul {
-    /* list-style: none; */
     color: var(--color-white);
+    font-size: var(--font-size-sm);
     padding: 1rem 1rem 1rem 2rem;
     line-height: 1.2;
   }
 
   p {
     font-weight: 400;
+    font-size: var(--font-size-sm);
     color: var(--color-white);
   }
 `

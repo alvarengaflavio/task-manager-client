@@ -35,7 +35,9 @@ export function LoginForm({ children }: Props) {
       return
     }
 
-    await login({ username, password })
+    const response = await login({ username, password })
+
+    setErrorState(() => response)
   }
 
   return (

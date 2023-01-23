@@ -1,4 +1,3 @@
-import { HandleError } from '@/utils/error/handle-error-modal'
 import { LoginPayload } from '@/utils/types/payloads'
 import axios from 'axios'
 
@@ -47,15 +46,18 @@ export const login = async ({ username, password }: LoginPayload) => {
       .catch((err) => err)
 
     if (response?.status === 201) {
-      console.log(response.data)
       localStorage.setItem('accessToken', response.data.accessToken)
 
-      return response.data
+      return []
     }
 
-    throw new Error('Incorrect username or password')
+    if (response?.data?.message === 'Invalid credentials') {
+      return ['Incorrect username or password']
+    }
+
+    return ['Something went wrong']
   } catch (err: any) {
-    HandleError(err, 'Login Error')
+    return ['Something went wrong']
   }
 }
 
@@ -82,7 +84,6 @@ export const register = async ({
 
     return ['Something went wrong']
   } catch (err: any) {
-    HandleError(err)
     return ['Something went wrong']
   }
 }
