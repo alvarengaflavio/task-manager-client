@@ -16,6 +16,7 @@ axios.interceptors.request.use(
 
     return config
   },
+
   (err) => {
     return Promise.reject(err)
   }
@@ -25,7 +26,6 @@ axios.interceptors.response.use(
   (config) => {
     return config
   },
-
   (err) => {
     if (err.response.status === 401 || err.response.status === 403) {
       if (localStorage.getItem('accessToken')) {
@@ -36,13 +36,15 @@ axios.interceptors.response.use(
       throw new Error(err.response.data.message)
     }
 
-    return err
+    return err?.response
   }
 )
 
 export const login = async ({ username, password }: LoginPayload) => {
   try {
-    const response = await axios.post('/auth/signin', { username, password })
+    const response = await axios
+      .post('/auth/signin', { username, password })
+      .catch((err) => err)
 
     if (response?.status === 201) {
       console.log(response.data)
@@ -57,11 +59,14 @@ export const login = async ({ username, password }: LoginPayload) => {
   }
 }
 
-export const register = async ({ username, password }: LoginPayload) => {
+export const register = async ({
+  username,
+  password,
+}: LoginPayload): Promise<string[]> => {
   try {
     const response = await axios
       .post('/auth/signup', { username, password })
-      .catch((err) => err.response)
+      .catch((err) => err)
 
     if (response?.status === 201) {
       return ['User successfully created']
@@ -74,7 +79,10 @@ export const register = async ({ username, password }: LoginPayload) => {
     if (response?.status === 409) {
       return [response?.data?.message]
     }
+
+    return ['Something went wrong']
   } catch (err: any) {
     HandleError(err)
+    return ['Something went wrong']
   }
 }
