@@ -1,4 +1,5 @@
 import { register } from '@/contexts/talespire/TalespireActions'
+import { registerFormValidator } from '@/utils/validators.util'
 import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { IoEyeOff } from 'react-icons/io5'
@@ -35,7 +36,14 @@ export function RegisterForm({ children }: Props) {
       return
     }
 
-    if (password !== confirmPassword) {
+    const errorsList = registerFormValidator(
+      username,
+      password,
+      confirmPassword
+    )
+
+    if (errorsList.length > 0) {
+      console.log(errorsList)
       return
     }
 
@@ -55,7 +63,6 @@ export function RegisterForm({ children }: Props) {
             name="username"
             id="username"
             placeholder="username"
-            pattern="[A-Za-z0-9\-]{1,20}"
             required
           />
         </div>
@@ -69,7 +76,6 @@ export function RegisterForm({ children }: Props) {
             name="password"
             id="password"
             placeholder="password"
-            pattern="^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$"
             required
           />
 
