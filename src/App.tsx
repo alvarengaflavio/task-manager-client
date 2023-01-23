@@ -4,6 +4,7 @@ import { TalespireProvider } from './contexts/talespire/TalespireContext'
 import { GlobalStyle } from './globalStyles'
 import { AboutPage } from './pages/AboutPage'
 import { LoginPage } from './pages/LoginPage'
+import { RegisterPage } from './pages/RegisterPage'
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <GlobalStyle />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<LoginPage />} />
           </Routes>
