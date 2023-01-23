@@ -57,15 +57,9 @@ export const login = async ({ username, password }: LoginPayload) => {
 
 export const register = async ({ username, password }: LoginPayload) => {
   try {
-    const response = await axios.post(
-      '/auth/signup',
-      JSON.stringify({ username, password })
-    )
+    const response = await axios.post('/auth/signup', { username, password })
 
     console.log(response.data)
-    localStorage.setItem('accessToken', response.data.accessToken)
-
-    return response.data
   } catch (err: any) {
     HandleError(err)
   }
