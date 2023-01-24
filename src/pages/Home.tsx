@@ -1,6 +1,6 @@
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
-import { LoginTitle } from '@/components/LoginTitle'
+import { TaskFilter } from '@/components/shared/TaskFilter'
 import { ScreenWrapper } from '@/components/styles/StyledScreenWrapper'
 import { TaskMenu } from '@/components/TaskMenu'
 
@@ -10,8 +10,9 @@ export function HomePage({}: Props) {
       <ScreenWrapper>
         <Header />
 
-        <LoginTitle />
         <TaskMenu />
+        <TaskFilter />
+
         <Footer />
       </ScreenWrapper>
     </>
