@@ -16,21 +16,13 @@ export function TaskMenu({}: Props) {
       <textarea
         name="taskdescription"
         id="taskdescription"
-        cols={30}
-        rows={10}
+        cols={50}
+        rows={5}
         placeholder="task description"
         style={{ resize: 'none' }}
-      ></textarea>
+      />
 
       <Button text="Create" type="submit" />
-
-      <label>Filter </label>
-      <select name="filter" id="filter">
-        <option value="all">All</option>
-        <option value="completed">Open</option>
-        <option value="incomplete">In Progress</option>
-        <option value="incomplete">Done</option>
-      </select>
     </StyledTaskMenu>
   )
 }
