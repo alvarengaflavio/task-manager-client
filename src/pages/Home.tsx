@@ -7,16 +7,15 @@ import { TaskMenu } from '@/components/TaskMenu'
 
 export function HomePage({}: Props) {
   return (
-    <>
-      <ScreenWrapper>
-        <Header />
+    <ScreenWrapper>
+      <Header />
 
-        <TaskMenu />
-        <TaskFilter />
-        <TaskList />
-        <Footer />
-      </ScreenWrapper>
-    </>
+      <TaskMenu />
+      <TaskFilter />
+      <TaskList />
+
+      <Footer />
+    </ScreenWrapper>
   )
 }
 
