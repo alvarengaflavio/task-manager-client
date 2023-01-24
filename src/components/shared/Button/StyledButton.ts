@@ -14,12 +14,16 @@ export const StyledPrimaryButton = styled.button`
   transition: var(--transition);
 
   &:hover,
-  /* &:focus, */
   &:focus-visible {
     outline: none;
     border-color: ${(props) => props.theme.colors.interactive};
-
     background-color: ${(props) => props.theme.colors.interactive};
+  }
+
+  &:active {
+    background-color: ${(props) => props.theme.colors.interactive};
+    color: var(--color-white);
+    transform: scale(0.95);
   }
 `
 
@@ -37,11 +41,15 @@ export const StyledSecondaryButton = styled.button`
   transition: var(--transition);
 
   &:hover,
-    /* &:focus, */
-    &:focus-visible {
+  &:focus-visible {
     outline: none;
     border-color: ${(props) => props.theme.colors.interactive};
-
     color: ${(props) => props.theme.colors.interactive};
+  }
+
+  &:active {
+    background-color: ${(props) => props.theme.colors.interactive};
+    color: var(--color-white);
+    transform: scale(0.95);
   }
 `
