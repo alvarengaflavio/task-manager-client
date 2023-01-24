@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { StyledPrimaryButton } from '../shared/Button/StyledButton'
 
 export const StyledFooter = styled.section`
   font-family: inherit;
@@ -22,9 +21,7 @@ export const StyledFooter = styled.section`
   }
 `
 export const FooterWrapper = styled.footer`
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: relative;
   height: 1rem;
   width: 100vw;
   box-shadow: 0px 0px 3px 1px ${({ theme }) => theme.colors.secondary};
