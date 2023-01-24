@@ -1,8 +1,13 @@
+import { TalespireContext } from '@/contexts/talespire/TalespireContext'
+import { TalespireState } from '@/contexts/talespire/TalespireReducer'
 import { Task } from '@/utils/types/tasks'
+import { useContext } from 'react'
 import { TaskItem } from '../shared/TaskItem'
 import { StyledTaskList } from './StyledTaskList'
 
 export function TaskList({}: Props) {
+  const { statusFilter } = useContext<Partial<TalespireState>>(TalespireContext)
+
   return (
     <StyledTaskList>
       {tasks.map((task) => (
