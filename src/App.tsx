@@ -3,6 +3,7 @@ import { ThemeProviderReducer } from './components/shared/ThemeProviderReducer'
 import { TalespireProvider } from './contexts/talespire/TalespireContext'
 import { GlobalStyle } from './globalStyles'
 import { AboutPage } from './pages/AboutPage'
+import { HomePage } from './pages/Home'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 
@@ -15,8 +16,9 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="*" element={<LoginPage />} />
+            <Route path="*" element={<HomePage />} />
           </Routes>
         </BrowserRouter>
       </ThemeProviderReducer>
