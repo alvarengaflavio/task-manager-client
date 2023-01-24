@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const StyledErrorDiv = styled.div`
   border-radius: 9px;
+  border: inset 2px rgba(0, 0, 0, 0.2);
   margin: 2rem auto 0 auto;
   width: 75%;
 
