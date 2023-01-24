@@ -1,6 +1,8 @@
 import styled from 'styled-components'
+import { StyledPrimaryButton } from '../shared/Button/StyledButton'
 
 export const StyledFooter = styled.section`
+  font-family: inherit;
   width: 100vw;
   height: 6rem;
   background-color: ${({ theme }) => theme.colors.background};
@@ -27,4 +29,23 @@ export const FooterWrapper = styled.footer`
   width: 100vw;
   box-shadow: 0px 0px 3px 1px ${({ theme }) => theme.colors.secondary};
   z-index: 1;
+`
+
+export const StyledAboutLink = styled.a`
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  outline: 1px solid;
+  padding: 0.15rem 0.4rem 0rem 0.4rem;
+  margin: 1rem auto;
+
+  color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.background};
+  transition: var(--transition);
+
+  &:hover {
+    cursor: pointer;
+    color: ${({ theme }) => theme.colors.interactive};
+  }
 `
