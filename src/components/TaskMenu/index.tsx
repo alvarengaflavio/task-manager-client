@@ -13,12 +13,15 @@ export function TaskMenu({}: Props) {
         placeholder="task name"
       />
       <label htmlFor="taskdescription">Description</label>
-      <input
-        type="text"
+      <textarea
         name="taskdescription"
         id="taskdescription"
+        cols={30}
+        rows={10}
         placeholder="task description"
-      />
+        style={{ resize: 'none' }}
+      ></textarea>
+
       <Button text="Create" type="submit" />
 
       <label>Filter </label>
