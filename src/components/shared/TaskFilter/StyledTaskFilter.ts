@@ -21,7 +21,11 @@ export const StyledTaskFilter = styled.div`
     border-bottom-right-radius: 8rem;
   }
 
-  button:focus,
+  button:active {
+    background-color: ${({ theme }) => theme.colors.interactive};
+    color: var(--color-white);
+  }
+
   button.active {
     background-color: ${({ theme }) => theme.colors.interactive};
     color: var(--color-white);
