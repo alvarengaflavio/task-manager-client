@@ -1,24 +1,12 @@
 import { TalespireContext } from '@/contexts/talespire/TalespireContext'
-import {
-  TalespireAction,
-  TalespireState,
-} from '@/contexts/talespire/TalespireReducer'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { MdDarkMode, MdLightMode } from 'react-icons/md'
 import { StyledDarkButton, StyledLightButton } from './StyledThemeButton'
 
-type Props = {}
-
 export function ThemeButton({}: Props) {
-  const { darkMode, dispatch } = useContext<{
-    darkMode: Partial<TalespireState>
-    dispatch: React.Dispatch<TalespireAction>
-  }>(TalespireContext as any)
-
-  const handleDarkMode = () => {
-    dispatch({ type: 'darkMode', payload: !darkMode })
-    console.log('Dark Mode: ', darkMode)
-  }
+  const { darkMode, handleDarkMode } = useContext<ThisState>(
+    TalespireContext as any
+  )
 
   if (darkMode) {
     return (
@@ -33,4 +21,11 @@ export function ThemeButton({}: Props) {
       <MdLightMode size={25} />
     </StyledLightButton>
   )
+}
+
+type Props = {}
+
+type ThisState = {
+  darkMode: boolean
+  handleDarkMode: () => void
 }
