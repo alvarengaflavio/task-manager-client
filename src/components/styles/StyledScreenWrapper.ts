@@ -6,13 +6,14 @@ export const ScreenWrapper = styled.section`
   min-height: 100vh;
   max-height: 200vh;
   width: 100vw;
+  background-image: url(/src/assets/bg-texture6.png);
 
   background-color: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.primary};
 
   transition: var(--transition);
 
-  &::before {
+  /* &::before {
     content: '';
     background-image: url(/src/assets/bg-texture6.png);
     position: absolute;
@@ -22,5 +23,5 @@ export const ScreenWrapper = styled.section`
     bottom: 0;
     opacity: 0.8;
     z-index: 0;
-  }
+  } */
 `
