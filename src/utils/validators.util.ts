@@ -38,9 +38,8 @@ const validadeUsername = (username: string, errors: string[]) => {
     return
   }
 
-  if (!username.match(/^[A-Za-z0-9\-]{1,20}$/)) {
-    errors.push('Username must contain only letters, numbers and dashes')
-    return
+  if (!username.match(/^[A-Za-z0-9]{1,20}$/)) {
+    errors.push('Username must contain only letters and numbers')
   }
 
   if (username.match(/^[0-9]+$/)) {
@@ -51,7 +50,6 @@ const validadeUsername = (username: string, errors: string[]) => {
 const validatePassword = (password: string, errors: string[]) => {
   if (password.length < 8) {
     errors.push('Password must be at least 8 characters long')
-    return
   }
 
   if (
