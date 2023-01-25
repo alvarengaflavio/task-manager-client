@@ -1,4 +1,4 @@
-import { StatusFilter } from '@/utils/types/tasks'
+import { StatusFilter, Task } from '@/utils/types/tasks'
 
 export const talespireReducer = (
   state: TalespireState,
@@ -17,6 +17,12 @@ export const talespireReducer = (
         statusFilter: action.payload,
       }
 
+    case 'tasksList':
+      return {
+        ...state,
+        tasksList: action.payload,
+      }
+
     default:
       return state
   }
@@ -25,9 +31,10 @@ export const talespireReducer = (
 export type TalespireState = {
   darkMode: boolean
   statusFilter: StatusFilter
+  tasksList: Task[]
 }
 
-export type TalespireAction = ActionTheme | ActionStatusFilter
+export type TalespireAction = ActionTheme | ActionStatusFilter | ActionTasksList
 
 export type ActionTheme = {
   type: 'darkMode'
@@ -37,4 +44,9 @@ export type ActionTheme = {
 export type ActionStatusFilter = {
   type: 'statusFilter'
   payload: StatusFilter
+}
+
+export type ActionTasksList = {
+  type: 'tasksList'
+  payload: Task[]
 }
