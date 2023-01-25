@@ -37,6 +37,11 @@ export function LoginForm({ children }: Props) {
 
     const response = await login({ username, password })
 
+    if (response.length === 0) {
+      navigate('/home')
+      return
+    }
+
     setErrorState(() => response)
   }
 
