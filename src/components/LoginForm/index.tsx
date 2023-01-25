@@ -1,6 +1,7 @@
 import { login } from '@/contexts/talespire/TalespireActions'
+import { TalespireContext } from '@/contexts/talespire/TalespireContext'
 import { loginFormValidator } from '@/utils/validators.util'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { IoEyeOff } from 'react-icons/io5'
 import { MdLock, MdRemoveRedEye } from 'react-icons/md'
@@ -13,6 +14,9 @@ export function LoginForm({ children }: Props) {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [errorState, setErrorState] = useState<string[]>([])
+  const { handleIsLogged } = useContext<{
+    handleIsLogged: (isLogged: boolean) => void
+  }>(TalespireContext as any)
 
   const handleRegister = () => {
     navigate('/register')
@@ -38,7 +42,7 @@ export function LoginForm({ children }: Props) {
     const response = await login({ username, password })
 
     if (response.length === 0) {
-      navigate('/home')
+      handleIsLogged(true)
       return
     }
 
@@ -52,7 +56,6 @@ export function LoginForm({ children }: Props) {
         <div className="form-wrapper">
           <div>
             <FaUser size={24} />
-            {/* <label htmlFor="inputEmail">EMAIL</label> */}
           </div>
           <input
             type="text"
