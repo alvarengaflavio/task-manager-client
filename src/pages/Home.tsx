@@ -7,14 +7,34 @@ import { TaskMenu } from '@/components/TaskMenu'
 import { TalespireContext } from '@/contexts/talespire/TalespireContext'
 import { StatusFilter, Task } from '@/utils/types/tasks'
 import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export function HomePage({}: Props) {
-  const { getTasksList, tasksList, setTasksList, statusFilter } =
-    useContext<GetTasksList>(TalespireContext as any)
+  const navigate = useNavigate()
+  const {
+    getTasksList,
+    tasksList,
+    setTasksList,
+    statusFilter,
+    isLogged,
+    handleIsLogged,
+  } = useContext<GetTasksList>(TalespireContext as any)
 
   useEffect(() => {
-    getTasksList(statusFilter)
-  }, [tasksList, statusFilter])
+    const accessToken = localStorage.getItem('accessToken')
+
+    if (accessToken) {
+      handleIsLogged(true)
+      getTasksList(statusFilter)
+      return
+    }
+
+    if (!isLogged) {
+      localStorage.removeItem('accessToken')
+      navigate('/login')
+      return
+    }
+  }, [statusFilter, isLogged])
 
   const handleUpdate = async (newTask: Task) => {
     setTasksList([...tasksList, newTask])
@@ -38,6 +58,8 @@ type Props = {}
 type GetTasksList = {
   tasksList: Task[]
   statusFilter: StatusFilter
+  isLogged: boolean
   getTasksList: (filter: StatusFilter) => Promise<void>
   setTasksList: (tasks: Task[]) => void
+  handleIsLogged: (isLogged: boolean) => void
 }
