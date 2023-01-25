@@ -1,3 +1,4 @@
+import { LoggedButton } from '../shared/LoggedButton'
 import { ThemeButton } from '../shared/ThemeButton'
 import { HeaderSection } from './StyledHeader'
 
@@ -12,6 +13,7 @@ export function Header({}: Props) {
       <div className="theme">
         <ThemeButton />
       </div>
+      <LoggedButton />
     </HeaderSection>
   )
 }
