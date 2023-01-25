@@ -6,11 +6,14 @@ import { TaskItem } from '../shared/TaskItem'
 import { StyledTaskList } from './StyledTaskList'
 
 export function TaskList({}: Props) {
-  const { statusFilter } = useContext<Partial<TalespireState>>(TalespireContext)
+  const { statusFilter, tasksList } =
+    useContext<Partial<TalespireState>>(TalespireContext)
+
+  if (!tasksList) return <StyledTaskList> No tasks created </StyledTaskList>
 
   return (
     <StyledTaskList>
-      {tasks.map((task) => (
+      {tasksList.map((task) => (
         <TaskItem
           key={task.id}
           id={task.id}
