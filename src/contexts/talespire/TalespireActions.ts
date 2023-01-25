@@ -1,4 +1,5 @@
 import { LoginPayload } from '@/utils/types/payloads'
+import { StatusFilter, Task } from '@/utils/types/tasks'
 import axios from 'axios'
 
 axios.defaults.baseURL =
@@ -85,5 +86,20 @@ export const register = async ({
     return ['Something went wrong']
   } catch (err: any) {
     return ['Something went wrong']
+  }
+}
+
+export const getTasks = async (filter: StatusFilter): Promise<Task[]> => {
+  try {
+    let queryBuilder = ''
+
+    if (filter !== 'ALL') queryBuilder = `?status=${filter}`
+
+    const response = await axios.get('/tasks' + queryBuilder)
+
+    return response.data
+  } catch (err: any) {
+    console.log(err)
+    return []
   }
 }
