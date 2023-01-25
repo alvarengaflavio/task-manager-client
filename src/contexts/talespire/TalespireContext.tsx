@@ -10,6 +10,8 @@ export const TalespireProvider = ({ children }: any) => {
     darkMode: true,
     statusFilter: 'ALL',
     tasksList: [],
+    isLogged: false,
+    isLoading: true,
   }
 
   const [state, dispatch] = useReducer(talespireReducer, initialState)
@@ -34,6 +36,14 @@ export const TalespireProvider = ({ children }: any) => {
     dispatch({ type: 'tasksList', payload: TasksListPayload })
   }
 
+  const handleIsLogged = (isLogged: boolean) => {
+    dispatch({ type: 'isLogged', payload: isLogged })
+  }
+
+  const handleIsLoading = (isLoading: boolean) => {
+    dispatch({ type: 'isLoading', payload: isLoading })
+  }
+
   return (
     <TalespireContext.Provider
       value={{
@@ -42,6 +52,8 @@ export const TalespireProvider = ({ children }: any) => {
         handleStatusFilter,
         getTasksList,
         setTasksList,
+        handleIsLogged,
+        handleIsLoading,
       }}
     >
       {children}
