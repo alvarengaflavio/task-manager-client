@@ -1,5 +1,5 @@
 import { LoginPayload } from '@/utils/types/payloads'
-import { StatusFilter, Task } from '@/utils/types/tasks'
+import { CreateTaskPayload, StatusFilter, Task } from '@/utils/types/tasks'
 import axios from 'axios'
 
 axios.defaults.baseURL =
@@ -101,5 +101,16 @@ export const getTasks = async (filter: StatusFilter): Promise<Task[]> => {
   } catch (err: any) {
     console.log(err)
     return []
+  }
+}
+
+export const createTask = async (task: CreateTaskPayload): Promise<Task> => {
+  try {
+    const response = await axios.post('/tasks', task)
+
+    return response.data
+  } catch (err: any) {
+    console.log(err)
+    return {} as Task
   }
 }
