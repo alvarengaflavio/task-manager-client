@@ -2,8 +2,7 @@ import { LoginPayload } from '@/utils/types/payloads'
 import { CreateTaskPayload, StatusFilter, Task } from '@/utils/types/tasks'
 import axios from 'axios'
 
-axios.defaults.baseURL =
-  'http://taskmanager-alva.sa-east-1.elasticbeanstalk.com'
+axios.defaults.baseURL = 'https://web-production-b2fc.up.railway.app/'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 axios.interceptors.request.use(
