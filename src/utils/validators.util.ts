@@ -1,3 +1,5 @@
+import { CreateTaskPayload } from './types/tasks'
+
 export const registerFormValidator = (
   username: string,
   password: string,
@@ -61,4 +63,24 @@ const validatePassword = (password: string, errors: string[]) => {
       'Password must contain one uppercase letter, one lowercase letter, one number and one special character'
     )
   }
+}
+
+export const createTaskFormValidator = (newTask: CreateTaskPayload) => {
+  const { title, description } = newTask
+  const errors: string[] = []
+
+  if (!title || !description) {
+    errors.push('Please fill all fields')
+    return errors
+  }
+
+  if (title.length < 3) {
+    errors.push('Title must be at least 3 characters long')
+  }
+
+  if (description.length < 8) {
+    errors.push('Description must be at least 8 characters long')
+  }
+
+  return errors
 }
