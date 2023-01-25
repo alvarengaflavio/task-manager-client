@@ -1,9 +1,9 @@
 Projeto 1 entrega: 26/01:
 Segue a lista de requisitos da primeira entrega. Tema livre:
 
-- [] Estilizar utilizando CSS ou styled-components (1,5 ponto);
+- [ ] Estilizar utilizando CSS ou styled-components (1,5 ponto);
 
-- Consumir a API (backend) utilizando o Axios (1 ponto);
+-[ ] Consumir a API (backend) utilizando o Axios (1 ponto);
 
 - Estruturar as pastas e melhorar a arquitetura do projeto (0,5 ponto);
 
