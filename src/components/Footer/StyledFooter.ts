@@ -11,13 +11,25 @@ export const StyledFooter = styled.section`
   div {
     display: flex;
     align-items: center;
+    background-color: inherit;
     justify-content: center;
     gap: 1rem;
+  }
+
+  div:last-child {
+    gap: 0.2rem;
   }
 
   img {
     margin-top: 0.8rem;
     width: 4rem;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    color: inherit;
   }
 `
 export const FooterWrapper = styled.footer`
@@ -37,8 +49,8 @@ export const StyledAboutLink = styled.a`
   padding: 0.15rem 0.4rem 0rem 0.4rem;
   margin: 1rem auto;
 
-  color: ${({ theme }) => theme.colors.secondary};
-  background-color: ${({ theme }) => theme.colors.background};
+  color: inherit;
+  background-color: inherit;
   transition: var(--transition);
 
   &:hover {

@@ -22,7 +22,7 @@ export function Footer({}: Props) {
           <StyledAboutLink onClick={handleAbout}>ABOUT</StyledAboutLink>
         </div>
         <div>
-          <p>© {currentYear} alva</p>
+          <p>© {currentYear} Alva -</p>
           <p>All rights reserved </p>
         </div>
       </StyledFooter>
