@@ -60,7 +60,7 @@ export function TaskMenu({ updateTasksList }: Props) {
             />
           </div>
 
-          <Button text="Create" type="submit" />
+          <Button text="Create Task" type="submit" />
         </form>
       </StyledTaskMenu>
     </>
