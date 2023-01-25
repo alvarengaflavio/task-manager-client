@@ -5,21 +5,26 @@ import { ScreenWrapper } from '@/components/styles/StyledScreenWrapper'
 import { TaskList } from '@/components/TaskList'
 import { TaskMenu } from '@/components/TaskMenu'
 import { TalespireContext } from '@/contexts/talespire/TalespireContext'
-import { StatusFilter } from '@/utils/types/tasks'
+import { StatusFilter, Task } from '@/utils/types/tasks'
 import { useContext, useEffect } from 'react'
 
 export function HomePage({}: Props) {
-  const { getTasksList } = useContext<GetTasksList>(TalespireContext as any)
+  const { getTasksList, tasksList, setTasksList, statusFilter } =
+    useContext<GetTasksList>(TalespireContext as any)
 
   useEffect(() => {
-    getTasksList('ALL')
-  }, [])
+    getTasksList(statusFilter)
+  }, [tasksList, statusFilter])
+
+  const handleUpdate = async (newTask: Task) => {
+    setTasksList([...tasksList, newTask])
+  }
 
   return (
     <ScreenWrapper>
       <Header />
 
-      <TaskMenu />
+      <TaskMenu updateTasksList={handleUpdate} />
       <TaskFilter />
       <TaskList />
 
@@ -31,5 +36,8 @@ export function HomePage({}: Props) {
 type Props = {}
 
 type GetTasksList = {
+  tasksList: Task[]
+  statusFilter: StatusFilter
   getTasksList: (filter: StatusFilter) => Promise<void>
+  setTasksList: (tasks: Task[]) => void
 }
