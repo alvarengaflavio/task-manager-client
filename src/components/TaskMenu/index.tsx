@@ -29,8 +29,8 @@ export function TaskMenu({ updateTasksList }: Props) {
     e.currentTarget.taskname.value = ''
     e.currentTarget.taskdescription.value = ''
 
-    const newTask = await createTask(payload)
-    updateTasksList(newTask)
+    const newTask = await createTask(payload) // create the task on the server
+    updateTasksList(newTask) // update the task list on the client
   }
 
   return (
