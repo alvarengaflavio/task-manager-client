@@ -1,5 +1,6 @@
-import { StatusFilter } from '@/utils/types/tasks'
+import { StatusFilter, Task } from '@/utils/types/tasks'
 import { createContext, useReducer } from 'react'
+import { getTasks } from './TalespireActions'
 import { talespireReducer, TalespireState } from './TalespireReducer'
 
 export const TalespireContext = createContext({})
@@ -8,6 +9,7 @@ export const TalespireProvider = ({ children }: any) => {
   const initialState: TalespireState = {
     darkMode: true,
     statusFilter: 'ALL',
+    tasksList: [],
   }
 
   const [state, dispatch] = useReducer(talespireReducer, initialState)
@@ -20,9 +22,27 @@ export const TalespireProvider = ({ children }: any) => {
     dispatch({ type: 'statusFilter', payload: status })
   }
 
+  const getTasksList = async (filter: StatusFilter) => {
+    const tasksList = await getTasks(filter)
+
+    dispatch({ type: 'tasksList', payload: tasksList })
+
+    return tasksList
+  }
+
+  const setTasksList = async (TasksListPayload: Task[]) => {
+    dispatch({ type: 'tasksList', payload: TasksListPayload })
+  }
+
   return (
     <TalespireContext.Provider
-      value={{ ...state, handleDarkMode, handleStatusFilter }}
+      value={{
+        ...state,
+        handleDarkMode,
+        handleStatusFilter,
+        getTasksList,
+        setTasksList,
+      }}
     >
       {children}
     </TalespireContext.Provider>
