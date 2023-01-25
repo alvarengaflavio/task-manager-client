@@ -18,22 +18,20 @@ export const StyledTaskMenu = styled(StyledCard)`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding-bottom: 1rem;
+    justify-content: space-around;
+    padding-bottom: 0.5rem;
     height: 100%;
     width: 90%;
 
     div {
       width: 100%;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      margin-top: 1rem;
     }
 
     input {
       width: 80%;
-      height: 3rem;
+      height: 3.2rem;
       padding: 0 1rem;
       border: 1px solid var(--color-grey);
       border-radius: 0.5rem;
@@ -50,6 +48,11 @@ export const StyledTaskMenu = styled(StyledCard)`
       align-self: center;
       margin: 0;
       padding: 0;
+    }
+
+    button {
+      width: 10rem;
+      height: 3.2rem;
     }
   }
 `
