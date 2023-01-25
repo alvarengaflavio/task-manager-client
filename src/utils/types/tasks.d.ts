@@ -6,6 +6,11 @@ export type Task = {
   createdAt: string
 }
 
+export type CreateTaskPayload = {
+  title: string
+  description: string
+}
+
 export type StatusFilter = 'ALL' | 'OPEN' | 'IN_PROGRESS' | 'DONE'
 
 export type TaskStatus = 'OPEN' | 'IN_PROGRESS' | 'DONE'
