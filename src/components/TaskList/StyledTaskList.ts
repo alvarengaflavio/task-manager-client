@@ -4,8 +4,7 @@ export const StyledTaskList = styled.section`
   display: grid;
   grid-template-columns: 1/2fr 1/2fr;
   grid-gap: 2rem;
-  padding: 20px;
-  margin: 0 auto;
+  margin: 0.2rem auto 0 auto;
   max-width: 800px;
   min-height: 60vh;
 
