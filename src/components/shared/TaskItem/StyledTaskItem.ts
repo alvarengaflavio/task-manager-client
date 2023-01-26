@@ -60,9 +60,6 @@ export const StyledTaskItem = styled.div`
   div.status--wrapper {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
-
     position: absolute;
     top: calc(50% - 3.5rem);
     right: 1rem;
@@ -93,7 +90,7 @@ export const StyledTaskItem = styled.div`
       }
 
       svg {
-        margin-top: 0.2rem;
+        margin-top: 3px;
       }
     }
   }

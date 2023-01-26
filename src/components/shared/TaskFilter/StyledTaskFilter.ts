@@ -11,6 +11,7 @@ export const StyledTaskFilter = styled.div`
     height: 2rem;
     font-size: var(--font-size-sm);
   }
+
   button:first-child {
     border-top-left-radius: 12rem;
     border-bottom-left-radius: 12rem;

@@ -25,8 +25,8 @@ export const StyledFilterDiv = styled.div`
 
     background-color: ${({ theme }) => theme.colors.backgroundVar};
   }
+
   svg {
-    /* margin-left: 0.5rem; */
     color: ${({ theme }) => theme.colors.primary};
 
     cursor: pointer;
