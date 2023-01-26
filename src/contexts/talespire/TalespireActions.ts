@@ -96,10 +96,10 @@ export const getTasks = async (
   try {
     let queryBuilder = ''
 
-    if (statusFilter !== 'ALL' && textFilter)
-      queryBuilder = `?status=${statusFilter}&search=${textFilter}`
-    else if (statusFilter !== 'ALL') queryBuilder = `?status=${statusFilter}`
-    else if (textFilter) queryBuilder += `?search=${textFilter}`
+    if (statusFilter !== 'ALL') {
+      queryBuilder = `?status=${statusFilter}`
+      if (textFilter) queryBuilder += `&search=${textFilter}`
+    } else if (textFilter) queryBuilder = `?search=${textFilter}`
 
     const response = await axios.get('/tasks' + queryBuilder)
 
