@@ -138,3 +138,33 @@ export const updateTaskStatus = async (
     return {} as Task
   }
 }
+
+export const getTaskById = async (id: number): Promise<Task> => {
+  try {
+    const response = await axios.get(`/tasks/${id}`)
+
+    return response.data
+  } catch (err: any) {
+    console.log(err)
+    return {} as Task
+  }
+}
+
+export const updateTask = async (task: Partial<Task>): Promise<Task> => {
+  try {
+    const response = await axios.patch(`/tasks/${task.id}`, task)
+
+    return response.data
+  } catch (err: any) {
+    console.log(err)
+    return {} as Task
+  }
+}
+
+export const deleteTask = async (id: number): Promise<void> => {
+  try {
+    await axios.delete(`/tasks/${id}`)
+  } catch (err: any) {
+    console.log(err)
+  }
+}
