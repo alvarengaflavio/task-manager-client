@@ -5,6 +5,7 @@ import { ScreenWrapper } from '@/components/styles/StyledScreenWrapper'
 import { TaskList } from '@/components/TaskList'
 import { TaskMenu } from '@/components/TaskMenu'
 import { TalespireContext } from '@/contexts/talespire/TalespireContext'
+import { getOrderedTasks } from '@/utils/functions.util'
 import { StatusFilter, Task } from '@/utils/types/tasks'
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -37,7 +38,8 @@ export function HomePage({}: Props) {
   }, [statusFilter, isLogged])
 
   const handleUpdate = async (newTask: Task) => {
-    setTasksList([...tasksList, newTask])
+    const newTasksList = getOrderedTasks([...tasksList, newTask])
+    setTasksList(newTasksList)
   }
 
   return (

@@ -1,3 +1,4 @@
+import { getOrderedTasks } from '@/utils/functions.util'
 import { LoginPayload } from '@/utils/types/payloads'
 import { CreateTaskPayload, StatusFilter, Task } from '@/utils/types/tasks'
 import axios from 'axios'
@@ -95,6 +96,7 @@ export const getTasks = async (filter: StatusFilter): Promise<Task[]> => {
     if (filter !== 'ALL') queryBuilder = `?status=${filter}`
 
     const response = await axios.get('/tasks' + queryBuilder)
+    const tasks = getOrderedTasks(response.data)
 
     return response.data
   } catch (err: any) {

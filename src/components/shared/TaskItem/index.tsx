@@ -1,6 +1,6 @@
 import { updateTaskStatus } from '@/contexts/talespire/TalespireActions'
 import { TalespireContext } from '@/contexts/talespire/TalespireContext'
-import { doubleDigit } from '@/utils/functions.util'
+import { doubleDigit, getOrderedTasks } from '@/utils/functions.util'
 import { Task, TaskStatus } from '@/utils/types/tasks'
 import { useContext, useState } from 'react'
 import { StyledTaskItem } from './StyledTaskItem'
@@ -24,13 +24,15 @@ export function TaskItem(props: Props) {
       console.log(err)
       return
     }) // update task status in db
-    const newTasksList = tasksList?.map((task) => {
-      if (task.id === id) {
-        task.status = status
-      }
+    const newTasksList = getOrderedTasks(
+      tasksList?.map((task) => {
+        if (task.id === id) {
+          task.status = status
+        }
 
-      return task
-    })
+        return task
+      })
+    )
 
     setTasksList(newTasksList) // update task status in context
   }
