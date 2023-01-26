@@ -27,6 +27,7 @@ export const talespireReducer = (
       return {
         ...state,
         tasksList: action.payload,
+        isLoading: false,
       }
 
     case 'isLogged':
@@ -35,7 +36,7 @@ export const talespireReducer = (
         isLogged: action.payload,
       }
 
-    case 'isLoading':
+    case 'setLoading':
       return {
         ...state,
         isLoading: action.payload,
@@ -89,6 +90,6 @@ export type ActionIsLogged = {
 }
 
 export type ActionIsLoading = {
-  type: 'isLoading'
+  type: 'setLoading'
   payload: boolean
 }
