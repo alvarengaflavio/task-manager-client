@@ -113,3 +113,17 @@ export const createTask = async (task: CreateTaskPayload): Promise<Task> => {
     return {} as Task
   }
 }
+
+export const updateTaskStatus = async (
+  id: number,
+  status: StatusFilter
+): Promise<Task> => {
+  try {
+    const response = await axios.patch(`/tasks/${id}/status`, { status })
+
+    return response.data
+  } catch (err: any) {
+    console.log(err)
+    return {} as Task
+  }
+}
