@@ -6,14 +6,15 @@ import { useContext, useState } from 'react'
 import { MdDoneAll, MdTimeline } from 'react-icons/md'
 import { BsThreeDots } from 'react-icons/bs'
 import { StyledTaskItem } from './StyledTaskItem'
+import { useNavigate } from 'react-router-dom'
 
 export function TaskItem(props: Props) {
+  const navigate = useNavigate()
   const [status, setStatus] = useState<TaskStatus>(props.status)
   const { tasksList, setTasksList } = useContext<TaskItemStates>(
     TalespireContext as any
   )
   const date = new Date(props.createdAt)
-
   const showDate = `${date.getDay()}/${
     date.getMonth() + 1
   }/${date.getFullYear()}`
@@ -39,9 +40,14 @@ export function TaskItem(props: Props) {
     setTasksList(newTasksList) // update task status in context
   }
 
+  const handleTaskClick = () => {
+    console.log(`task ${props.id} clicked`)
+    navigate(`/task/${props.id}`)
+  }
+
   return (
     <StyledTaskItem>
-      <div className="text--wrapper">
+      <div className="text--wrapper" onClick={handleTaskClick}>
         <h4>{props.title.toLocaleUpperCase()}</h4>
         <p>{props.description}</p>
         <p>{`${showDate} - ${showTime}`}</p>

@@ -49,7 +49,7 @@ export const TalespireProvider = ({ children }: any) => {
   }
 
   const handleIsLoading = (isLoading: boolean) => {
-    dispatch({ type: 'isLoading', payload: isLoading })
+    dispatch({ type: 'setLoading', payload: isLoading })
   }
 
   return (
