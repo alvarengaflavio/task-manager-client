@@ -79,18 +79,22 @@ export const StyledTaskItem = styled.div`
 
       cursor: pointer;
       z-index: 5;
-    }
 
-    button:hover {
-      color: var(--color-white);
-      border-color: ${({ theme }) => theme.colors.backgroundVar};
-      background-color: ${({ theme }) => theme.colors.interactive};
-    }
+      &:hover {
+        color: var(--color-white);
+        border-color: ${({ theme }) => theme.colors.backgroundVar};
+        background-color: ${({ theme }) => theme.colors.interactive};
+      }
 
-    button.active {
-      color: var(--color-white);
-      border-color: var(--color-white);
-      background-color: ${({ theme }) => theme.colors.interactive};
+      &.active {
+        color: var(--color-white);
+        border-color: var(--color-white);
+        background-color: ${({ theme }) => theme.colors.interactive};
+      }
+
+      svg {
+        margin-top: 0.2rem;
+      }
     }
   }
 
