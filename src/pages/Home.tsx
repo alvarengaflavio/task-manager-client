@@ -17,6 +17,7 @@ export function HomePage({}: Props) {
     tasksList,
     setTasksList,
     statusFilter,
+    textFilter,
     isLogged,
     handleIsLogged,
   } = useContext<GetTasksList>(TalespireContext as any)
@@ -26,7 +27,7 @@ export function HomePage({}: Props) {
 
     if (accessToken) {
       handleIsLogged(true)
-      getTasksList(statusFilter)
+      getTasksList(statusFilter, textFilter)
       return
     }
 
@@ -35,7 +36,7 @@ export function HomePage({}: Props) {
       navigate('/login')
       return
     }
-  }, [statusFilter, isLogged])
+  }, [statusFilter, textFilter, isLogged])
 
   const handleUpdate = async (newTask: Task) => {
     const newTasksList = getOrderedTasks([...tasksList, newTask])
@@ -60,8 +61,9 @@ type Props = {}
 type GetTasksList = {
   tasksList: Task[]
   statusFilter: StatusFilter
+  textFilter: string
   isLogged: boolean
-  getTasksList: (filter: StatusFilter) => Promise<void>
+  getTasksList: (filter: StatusFilter, text: string) => Promise<void>
   setTasksList: (tasks: Task[]) => void
   handleIsLogged: (isLogged: boolean) => void
 }
