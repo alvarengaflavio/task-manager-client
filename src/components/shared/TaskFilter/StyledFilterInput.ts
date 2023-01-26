@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const StyledFilterDiv = styled.div`
   display: flex;
   align-items: center;
-  margin: 0.2rem auto 0.5rem;
+  margin: 0 auto 1.1rem;
   height: 2rem;
 
   input {

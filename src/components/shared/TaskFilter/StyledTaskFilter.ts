@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const StyledTaskFilter = styled.div`
   display: flex;
-  margin: 0.5rem auto;
+  margin: 1.1rem auto;
   z-index: 1;
 
   button {

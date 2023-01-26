@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 export const StyledTaskList = styled.section`
-  display: grid;
-  grid-template-columns: 1/2fr 1/2fr;
-  grid-gap: 2rem;
-  margin: 0.2rem auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 auto 2rem auto;
   max-width: 800px;
   min-height: 60vh;
 
