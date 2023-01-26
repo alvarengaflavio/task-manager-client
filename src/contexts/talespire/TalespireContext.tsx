@@ -9,6 +9,7 @@ export const TalespireProvider = ({ children }: any) => {
   const initialState: TalespireState = {
     darkMode: true,
     statusFilter: 'ALL',
+    textFilter: '',
     tasksList: [],
     isLogged: false,
     isLoading: true,
@@ -20,12 +21,19 @@ export const TalespireProvider = ({ children }: any) => {
     dispatch({ type: 'darkMode', payload: !state.darkMode })
   }
 
-  const handleStatusFilter = (status: StatusFilter) => {
+  const setStatusFilter = (status: StatusFilter) => {
     dispatch({ type: 'statusFilter', payload: status })
   }
 
-  const getTasksList = async (filter: StatusFilter) => {
-    const tasksList = await getTasks(filter)
+  const setTextFilter = (text: string) => {
+    dispatch({ type: 'textFilter', payload: text.substring(0, 20) })
+  }
+
+  const getTasksList = async (
+    statusFilter: StatusFilter,
+    textFilter: string
+  ) => {
+    const tasksList = await getTasks(statusFilter, textFilter)
 
     dispatch({ type: 'tasksList', payload: tasksList })
 
@@ -49,7 +57,8 @@ export const TalespireProvider = ({ children }: any) => {
       value={{
         ...state,
         handleDarkMode,
-        handleStatusFilter,
+        setStatusFilter,
+        setTextFilter,
         getTasksList,
         setTasksList,
         handleIsLogged,
