@@ -17,6 +17,12 @@ export const talespireReducer = (
         statusFilter: action.payload,
       }
 
+    case 'textFilter':
+      return {
+        ...state,
+        textFilter: action.payload,
+      }
+
     case 'tasksList':
       return {
         ...state,
@@ -43,6 +49,7 @@ export const talespireReducer = (
 export type TalespireState = {
   darkMode: boolean
   statusFilter: StatusFilter
+  textFilter: string
   tasksList: Task[]
   isLogged: boolean
   isLoading: boolean
@@ -51,6 +58,7 @@ export type TalespireState = {
 export type TalespireAction =
   | ActionTheme
   | ActionStatusFilter
+  | ActionTextFilter
   | ActionTasksList
   | ActionIsLogged
   | ActionIsLoading
@@ -63,6 +71,11 @@ export type ActionTheme = {
 export type ActionStatusFilter = {
   type: 'statusFilter'
   payload: StatusFilter
+}
+
+export type ActionTextFilter = {
+  type: 'textFilter'
+  payload: string
 }
 
 export type ActionTasksList = {
