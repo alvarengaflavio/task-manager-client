@@ -89,16 +89,25 @@ export const register = async ({
   }
 }
 
-export const getTasks = async (filter: StatusFilter): Promise<Task[]> => {
+export const getTasks = async (
+  statusFilter: StatusFilter,
+  textFilter: string
+): Promise<Task[]> => {
   try {
     let queryBuilder = ''
 
-    if (filter !== 'ALL') queryBuilder = `?status=${filter}`
+    if (statusFilter !== 'ALL' && textFilter)
+      queryBuilder = `?status=${statusFilter}&search=${textFilter}`
+    else if (statusFilter !== 'ALL') queryBuilder = `?status=${statusFilter}`
+    else if (textFilter) queryBuilder += `?search=${textFilter}`
 
     const response = await axios.get('/tasks' + queryBuilder)
+
+    if (response.data.length === 0) return []
+
     const tasks = getOrderedTasks(response.data)
 
-    return response.data
+    return tasks
   } catch (err: any) {
     console.log(err)
     return []
