@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   --color-white: rgb(255, 255, 255);
   --color-light: rgba(255, 255, 255, 0.6);
   --color-disabled: rgba(255, 255, 255, 0.4);
-  --color-disabled-text: rgba(255, 255, 255, 0.2);
+  --color-disabled-text: rgba(50, 50, 50, 0.8);
 
   --font-size-sm: 0.9rem;
   --font-size-md: 1.2rem;
