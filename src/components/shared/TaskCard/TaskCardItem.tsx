@@ -3,6 +3,7 @@ import { Mode } from '@/pages/TaskPage'
 import { Task } from '@/utils/types/tasks'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../Button'
+import { TaskCardItemStyle } from './TaskCardItemStyle'
 
 export function TaskCardItem({ task, viewMode, setMode }: Props) {
   const navigate = useNavigate()
@@ -40,11 +41,11 @@ export function TaskCardItem({ task, viewMode, setMode }: Props) {
   }
 
   return (
-    <div>
-      <Button text="BACK" handleClick={handleBack} />
+    <TaskCardItemStyle>
+      <Button text="BACK" handleClick={handleBack} className={'btn--back'} />
 
       {viewMode !== 'edit' && (
-        <>
+        <div className="text--wrapper">
           <div>
             <label>Title</label>
             <h4>{task.title}</h4>
@@ -61,11 +62,11 @@ export function TaskCardItem({ task, viewMode, setMode }: Props) {
             <label>Created at:</label>
             <p>{`${task.createdAt}`}</p>
           </div>
-        </>
+        </div>
       )}
 
       {viewMode === 'edit' && (
-        <>
+        <div className="text--wrapper form--wrapper">
           <form onSubmit={handleUpdate} name="edit-form">
             <div>
               <label>Title</label>
@@ -77,6 +78,7 @@ export function TaskCardItem({ task, viewMode, setMode }: Props) {
                 type="text"
                 name="description"
                 defaultValue={task.description}
+                className="input--description"
               />
             </div>
             <div>
@@ -87,34 +89,36 @@ export function TaskCardItem({ task, viewMode, setMode }: Props) {
                 <option value="DONE">DONE</option>
               </select>
             </div>
-            <Button text="UPDATE" type="submit" />
-            <Button
-              text="CANCEL"
-              style="secondary"
-              handleClick={() => setMode('view')}
-            />
+            <div className="btn--wrapper">
+              <Button text="UPDATE" type="submit" />
+              <Button
+                text="CANCEL"
+                style="secondary"
+                handleClick={() => setMode('view')}
+              />
+            </div>
           </form>
-        </>
+        </div>
       )}
 
       {viewMode === 'view' && (
-        <>
+        <div className="btn--wrapper">
           <Button text="EDIT" handleClick={() => setMode('edit')} />
           <Button
             text="DELETE"
             style="secondary"
             handleClick={() => setMode('delete')}
           />
-        </>
+        </div>
       )}
 
       {viewMode === 'delete' && (
-        <>
+        <div className="btn--wrapper">
           <Button text="CANCEL" handleClick={() => setMode('view')} />
           <Button text="CONFIRM" handleClick={handleDelete} style="secondary" />
-        </>
+        </div>
       )}
-    </div>
+    </TaskCardItemStyle>
   )
 }
 
