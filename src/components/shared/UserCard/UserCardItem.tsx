@@ -30,6 +30,7 @@ export function UserCardItem({ user, viewMode, setMode }: Props) {
       alert('Error deleting user')
     })
 
+    localStorage.removeItem('accessToken')
     navigate('/login')
   }
 
