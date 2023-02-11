@@ -9,7 +9,9 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 axios.interceptors.request.use(
   (config) => {
+    // add header with token and Access-Control-Allow-Origin to all requests
     const token = localStorage.getItem('accessToken')
+    config.headers['Access-Control-Allow-Origin'] = '*' // eslint-disable-line
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
