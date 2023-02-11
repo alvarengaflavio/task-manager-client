@@ -1,6 +1,7 @@
 import { TalespireContext } from '@/contexts/talespire/TalespireContext'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { DropDownButton } from './DropDownBtn'
 import { StyledLoggedButton } from './StyledLoggedButton'
 
 export function LoggedButton({}: Props) {
@@ -16,9 +17,7 @@ export function LoggedButton({}: Props) {
   }
 
   if (isLogged) {
-    return (
-      <StyledLoggedButton onClick={handleLogout}>Logout</StyledLoggedButton>
-    )
+    return <DropDownButton handleLogout={handleLogout} />
   }
 
   return <StyledLoggedButton onClick={handleLogout}>Login</StyledLoggedButton>
