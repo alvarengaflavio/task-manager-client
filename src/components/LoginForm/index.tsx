@@ -41,7 +41,7 @@ export function LoginForm({ children }: Props) {
 
     const response = await login({ username, password })
 
-    if (response.length === 0) {
+    if (response[0] === 'Success') {
       handleIsLogged(true)
       return
     }
