@@ -1,6 +1,7 @@
 import { getOrderedTasks } from '@/utils/functions.util'
 import { LoginPayload } from '@/utils/types/payloads'
 import { CreateTaskPayload, StatusFilter, Task } from '@/utils/types/tasks'
+import { User } from '@/utils/types/user'
 import axios from 'axios'
 
 axios.defaults.baseURL = 'https://web-production-b2fc.up.railway.app/'
@@ -40,6 +41,9 @@ axios.interceptors.response.use(
   }
 )
 
+/*
+ * AUTH ACTIONS *
+ */
 export const login = async ({ username, password }: LoginPayload) => {
   try {
     const response = await axios
@@ -88,6 +92,37 @@ export const register = async ({
     return ['Something went wrong']
   }
 }
+
+export const loggedUser = async (): Promise<User> => {
+  try {
+    const response = await axios.get('/auth/signed')
+
+    return response.data
+  } catch (err: any) {
+    console.log(err)
+    return {} as User
+  }
+}
+
+export const updateName = async (name: string): Promise<void> => {
+  try {
+    await axios.patch('/auth/update', { name })
+  } catch (err: any) {
+    console.log(err)
+  }
+}
+
+export const deleteUser = async (): Promise<void> => {
+  try {
+    await axios.delete('/auth')
+  } catch (err: any) {
+    console.log(err)
+  }
+}
+
+/*
+ * TASK ACTIONS *
+ */
 
 export const getTasks = async (
   statusFilter: StatusFilter,
