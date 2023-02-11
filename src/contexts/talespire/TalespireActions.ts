@@ -11,7 +11,8 @@ axios.interceptors.request.use(
   (config) => {
     // add header with token and Access-Control-Allow-Origin to all requests
     const token = localStorage.getItem('accessToken')
-    config.headers['Access-Control-Allow-Origin'] = '*' // eslint-disable-line
+    config.headers['Access-Control-Allow-Origin'] =
+      'https://task-manager-ashen-eight.vercel.app/' // eslint-disable-line
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
