@@ -7,6 +7,7 @@ import { TaskCardItemStyle } from './TaskCardItemStyle'
 
 export function TaskCardItem({ task, viewMode, setMode }: Props) {
   const navigate = useNavigate()
+  const creationDate = new Date(task.createdAt).toUTCString()
 
   // submit form
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -60,7 +61,7 @@ export function TaskCardItem({ task, viewMode, setMode }: Props) {
           </div>
           <div>
             <label>Created at:</label>
-            <p>{`${task.createdAt}`}</p>
+            <p>{`${creationDate.substring(0, creationDate.length - 4)}`}</p>
           </div>
         </div>
       )}
