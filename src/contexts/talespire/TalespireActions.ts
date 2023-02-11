@@ -53,7 +53,7 @@ export const login = async ({ username, password }: LoginPayload) => {
     if (response?.status === 201) {
       localStorage.setItem('accessToken', response.data.accessToken)
 
-      return []
+      return ['Success']
     }
 
     if (response?.data?.message === 'Invalid credentials') {
