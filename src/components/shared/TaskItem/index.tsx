@@ -47,6 +47,9 @@ export function TaskItem(props: Props) {
 
   return (
     <StyledTaskItem>
+      <div className="status--wrapper status--text">
+        <span>{status === 'IN_PROGRESS' ? 'IN PROGRESS' : status}</span>
+      </div>
       <div className="text--wrapper" onClick={handleTaskClick}>
         <h4>{props.title.toLocaleUpperCase()}</h4>
         <p>{props.description}</p>
