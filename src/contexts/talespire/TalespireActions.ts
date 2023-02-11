@@ -34,6 +34,15 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (config) => {
+    // add header with Access-Control-Allow-Origin to all requests
+    config.headers['Access-Control-Allow-Credentials'] = 'true'
+    config.headers['Access-Control-Allow-Origin'] =
+      'https://task-manager-ashen-eight.vercel.app/'
+    config.headers['Access-Control-Allow-Methods'] =
+      'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+    config.headers['Access-Control-Allow-Headers'] =
+      'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json'
+
     return config
   },
   (err) => {
