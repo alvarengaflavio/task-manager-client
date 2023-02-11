@@ -21,10 +21,10 @@ export function LoginPage({}: Props) {
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken')
 
-    if (accessToken) {
-      handleIsLogged(true)
+    if (!accessToken) {
+      if (isLogged) handleIsLogged(false)
+    } else {
       navigate('/home')
-      return
     }
 
     document.title = 'Login'
