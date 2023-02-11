@@ -43,8 +43,11 @@ export function RegisterForm({ children }: Props) {
     }
 
     const response = await register({ username, password })
-
     setErrorState(() => response)
+
+    if (errorState[0] === 'User successfully created') {
+      navigate('/home')
+    }
   }
 
   return (
