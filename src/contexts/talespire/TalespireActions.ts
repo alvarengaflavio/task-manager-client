@@ -6,6 +6,13 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'https://web-production-b2fc.up.railway.app/'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.headers['Access-Control-Allow-Credentials'] = true
+axios.defaults.headers['Access-Control-Allow-Origin'] =
+  'https://task-manager-ashen-eight.vercel.app'
+axios.defaults.headers['Access-Control-Allow-Methods'] =
+  'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+axios.defaults.headers['Access-Control-Allow-Headers'] =
+  'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json'
 
 axios.interceptors.request.use(
   (config) => {
@@ -15,14 +22,6 @@ axios.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
-
-    config.headers['Access-Control-Allow-Credentials'] = true
-    config.headers['Access-Control-Allow-Origin'] =
-      'https://task-manager-ashen-eight.vercel.app/'
-    config.headers['Access-Control-Allow-Methods'] =
-      'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-    config.headers['Access-Control-Allow-Headers'] =
-      'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json'
 
     return config
   },
@@ -34,15 +33,6 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (config) => {
-    // add header with Access-Control-Allow-Origin to all requests
-    config.headers['Access-Control-Allow-Credentials'] = 'true'
-    config.headers['Access-Control-Allow-Origin'] =
-      'https://task-manager-ashen-eight.vercel.app/'
-    config.headers['Access-Control-Allow-Methods'] =
-      'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-    config.headers['Access-Control-Allow-Headers'] =
-      'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json'
-
     return config
   },
   (err) => {
