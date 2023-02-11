@@ -17,10 +17,10 @@ export const StyledTaskItem = styled.div`
 
   transition: background-color 0.2s ease-in-out;
 
-  background-color: ${({ theme }) => theme.colors.backgroundVar};
+  background: ${({ theme }) => theme.colors.backgroundVar};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.interactive};
+    background-color: rgba(52, 160, 240, 0.2);
   }
 
   div.text--wrapper {
@@ -28,6 +28,7 @@ export const StyledTaskItem = styled.div`
     flex-direction: column;
     align-items: center;
     align-self: flex-start;
+    padding-left: 2rem;
     gap: 0.3rem;
     width: 93%;
     cursor: pointer;
@@ -92,6 +93,24 @@ export const StyledTaskItem = styled.div`
       svg {
         margin-top: 3px;
       }
+    }
+  }
+
+  div.status--wrapper.status--text {
+    top: 0.5rem;
+    left: 0;
+    height: 100%;
+    width: 2rem;
+    z-index: 5;
+
+    span {
+      font-size: var(--font-size-sm);
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+      text-align: center;
+      align-self: center;
+      height: 80%;
+      margin: 0.5rem 0;
     }
   }
 
