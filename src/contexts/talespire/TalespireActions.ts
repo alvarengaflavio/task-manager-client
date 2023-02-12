@@ -63,25 +63,19 @@ axios.interceptors.response.use(
  */
 export const login = async ({ username, password }: LoginPayload) => {
   try {
-    const response = await axios
-      .post('/auth/signin', { username, password })
-      .catch((err) => err)
+    const response = await axios.post('/auth/signin', { username, password });
 
-    if (response?.status === 201) {
-      localStorage.setItem('accessToken', response.data.accessToken)
-
-      return ['Success']
+    if (response.status === 201) {
+      localStorage.setItem('accessToken', response.data.accessToken);
+      return ['Success'];
     }
 
-    if (response?.data?.message === 'Invalid credentials') {
-      return ['Incorrect username or password']
-    }
-
-    return ['Something went wrong']
-  } catch (err: any) {
-    return ['Something went wrong']
+    return [response.data.message];
+  } catch (error) {
+    console.error(error);
+    return ['Something went wrong'];
   }
-}
+};
 
 export const register = async ({
   username,
@@ -90,28 +84,20 @@ export const register = async ({
   try {
     const response = await axios
       .post('/auth/signup', { username, password })
-      .catch((err) => err)
 
     if (response?.status === 201) {
       return ['User successfully created']
     }
 
-    if (response?.status === 400) {
-      return [response?.data?.message]
-    }
-
-    if (response?.status === 409) {
+    if ([400, 409].includes(response?.status)) {
       return [response?.data?.message]
     }
 
     return ['Something went wrong']
-  } catch (err: any) {
+  } catch (error: Error) {
+    console.error(error);
     return ['Something went wrong']
   }
-}
-
-interface Error {
-  message: string
 }
 
 export const loggedUser = async (): Promise<User | {}> => {
@@ -224,4 +210,8 @@ export const deleteTask = async (id: number): Promise<void> => {
   } catch (err: any) {
     console.log(err)
   }
+}
+
+interface Error {
+  message: string
 }
