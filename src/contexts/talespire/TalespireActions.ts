@@ -110,13 +110,17 @@ export const register = async ({
   }
 }
 
-export const loggedUser = async (): Promise<User> => {
+interface Error {
+  message: string
+}
+
+export const loggedUser = async (): Promise<User | {}> => {
   try {
     const response = await axios.get('/auth/signed')
 
     return response.data
-  } catch (err: any) {
-    console.log(err)
+  } catch (err: Error) {
+    console.error(err.message)
     return {} as User
   }
 }
@@ -124,18 +128,19 @@ export const loggedUser = async (): Promise<User> => {
 export const updateName = async (name: string): Promise<void> => {
   try {
     await axios.patch('/auth/update', { name })
-  } catch (err: any) {
-    console.log(err)
+  } catch (err: Error) {
+    console.error(err.message)
   }
 }
 
 export const deleteUser = async (): Promise<void> => {
   try {
     await axios.delete('/auth')
-  } catch (err: any) {
-    console.log(err)
+  } catch (err: Error) {
+    console.error(err.message)
   }
 }
+
 
 /*
  * TASK ACTIONS *
