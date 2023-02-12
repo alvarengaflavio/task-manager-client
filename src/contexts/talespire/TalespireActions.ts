@@ -16,7 +16,6 @@ axios.defaults.headers['Access-Control-Allow-Headers'] =
 
 axios.interceptors.request.use(
   (config) => {
-    // add header with token and Access-Control-Allow-Origin to all requests
     const token = localStorage.getItem('accessToken')
 
     if (token) {
@@ -26,26 +25,36 @@ axios.interceptors.request.use(
     return config
   },
 
-  (err) => {
-    return Promise.reject(err)
+  (error) => {
+    return Promise.reject(error)
   }
 )
 
+let retryCount = 0
+
 axios.interceptors.response.use(
-  (config) => {
-    return config
+  (response) => {
+    retryCount = 0
+    return response
   },
-  (err) => {
-    if (err.response.status === 401 || err.response.status === 403) {
+  (error) => {
+    const { status } = error.response
+    const isTokenError = [401, 403].includes(status)
+
+    if (isTokenError) {
       if (localStorage.getItem('accessToken')) {
         localStorage.removeItem('accessToken')
       }
-      // Redirecione o usuário para a página de login ou mostre uma mensagem de erro
-      window.location.href = '/login'
-      throw new Error(err.response.data.message)
+      // Show error message or notification to user
+      console.error(error.response.data.message)
     }
 
-    return err?.response
+    if (!isTokenError && retryCount < 3) {
+      retryCount += 1
+      return axios.request(error.config)
+    }
+
+    return Promise.reject(error)
   }
 )
 
